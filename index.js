@@ -34,7 +34,7 @@ function basicQuestions() {
           name: "email"
         }
     ]).then(responses => {
-        var newEmployee = new Employee(responses.id, responses.name, responses.email);
+        var newEmployee = new Employee(responses.name, responses.id, responses.email);
         var role = responses.role;
         if(role === "Manager"){
             managerQuestion(newEmployee.id,newEmployee.name,newEmployee.email)
@@ -79,7 +79,7 @@ function managerQuestion(id,name,email){
         message: "What is the employee's phone number?",
         name: "extraproperty"
       }).then(answer => {
-        var newManager = new Manager(id,name,email,`Phone: ${answer.extraproperty}`)
+        var newManager = new Manager(name, id, email,`Phone: ${answer.extraproperty}`)
         employeeObjectList.table.push(newManager)
         createEmployeeProfile();
       })
@@ -90,7 +90,7 @@ function internQuestion(id,name,email){
         message: "What school is the employee attending?",
         name: "extraproperty"
       }).then(answer => {
-        var newIntern = new Intern(id,name,email,`School: ${answer.extraproperty}`)
+        var newIntern = new Intern(name, id, email,`School: ${answer.extraproperty}`)
         employeeObjectList.table.push(newIntern)
         createEmployeeProfile();
       })
@@ -101,7 +101,7 @@ function engineerQuestion(id,name,email){
         message: "What is the employee's github username?",
         name: "extraproperty"
       }).then(answer => {
-        var newEngineer = new Engineer(id,name,email,`GitHub: ${answer.extraproperty}`)
+        var newEngineer = new Engineer(name, id, email,`GitHub: ${answer.extraproperty}`)
         employeeObjectList.table.push(newEngineer)
         createEmployeeProfile();
       })
@@ -153,5 +153,3 @@ function createHTLMBody(array){
     });  
     return bodyHTML
 }
-
-
